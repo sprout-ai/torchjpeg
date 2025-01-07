@@ -1,0 +1,108 @@
+[build-system]
+requires = [
+    "setuptools>=61.0.0",
+    "wheel",
+    "build",
+    "torch>=2.2.1"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torchjpeg"
+version = "0.0.0"
+description = "Utilities for JPEG data access and manipulation in pytorch"
+readme = "README.md"
+
+authors = [
+  { name = "Max Ehrlich" }
+]
+
+# Your normal, top-level dependencies go here:
+dependencies = [
+  "torch>=2.2.1"
+]
+
+
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: C++",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Development Status :: 3 - Alpha"
+]
+
+[project.urls]
+homepage = "https://torchjpeg.readthedocs.io"
+repository = "https://gitlab.com/torchjpeg/torchjpeg"
+documentation = "https://torchjpeg.readthedocs.io"
+
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+dev = [
+    "dunamai>=1.15.0,<2.0.0",
+    "invoke>=2.1.2,<3.0.0",
+    "colorama>=0.4.3,<0.5.0",
+    "black>=22.3.0,<23.0.0",
+    "isort>=5.5.2,<6.0.0",
+    "mypy>=1.3.0,<2.0.0",
+    "pylint>=2.17.4,<3.0.0",
+    "pytest>=6.0.0,<7.0.0",
+    "coverage>=5.2.1,<6.0.0",
+    "pytest-cov>=2.10.0,<3.0.0",
+    "virtualenv>=20.23.0,<21.0.0",
+    "setuptools==67.8.0"
+]
+
+docs = [
+    "sphinx>=2,<3",
+    "sphinxcontrib-katex>=0.9.10,<1.0.0",
+    "pydocstyle>=5.0.2,<6.0.0",
+    "sphinx-book-theme>=0.0.34,<0.1.0",
+    "myst-parser>=0.9.1,<0.10.0",
+    "jinja2<3.1",
+    "sphinxcontrib-applehelp==1.0.4",
+    "sphinxcontrib-devhelp==1.0.2",
+    "sphinxcontrib-htmlhelp==2.0.1",
+    "sphinxcontrib-qthelp==1.0.3",
+    "sphinxcontrib-serializinghtml==1.1.5",
+    "alabaster==0.7.13"
+]
+
+[tool.black]
+line-length = 1000
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 1000
+
+[tool.mypy]
+ignore_missing_imports = true
+no_implicit_optional = true
+check_untyped_defs = true
+
+[tool.pytest.ini_options]
+addopts = "--cov=torchjpeg --cov-report term --cov-append"
+
+[tool.pylint.master]
+init-hook = 'import sys; sys.path.append("src")'
+unsafe-load-any-extension = true
+
+[tool.pylint.messages_control]
+disable = [
+    "line-too-long",
+    "trailing-whitespace",
+    "invalid-name",
+    "missing-module-docstring",
+    "wrong-import-order",
+    "not-callable"
+]
+
+[tool.pylint.typecheck]
+generated-members = "numpy.*,torch.*"
